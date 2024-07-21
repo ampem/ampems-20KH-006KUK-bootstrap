@@ -43,15 +43,15 @@
         repo: 'deb https://download.sublimetext.com/ apt/stable/'
         state: present
 
-    - name: Add Waterfox repository key
-      apt_key:
-        url: https://dl.waterfox.net/linux/waterfox.gpg
-        state: present
+    # - name: Add Waterfox repository key
+    #   apt_key:
+    #     url: https://dl.waterfox.net/linux/waterfox.gpg
+    #     state: present
 
-    - name: Add Waterfox repository
-      apt_repository:
-        repo: 'deb https://dl.waterfox.net/linux/deb/ stable main'
-        state: present
+    # - name: Add Waterfox repository
+    #   apt_repository:
+    #     repo: 'deb https://dl.waterfox.net/linux/deb/ stable main'
+    #     state: present
 
     - name: Add Regolith Desktop repository
       apt_repository:
@@ -85,7 +85,7 @@
         - regolith-desktop
         - steam
         - sublime-text
-        - waterfox
+        # - waterfox
         - wget
         - wireshark
         - zsh
