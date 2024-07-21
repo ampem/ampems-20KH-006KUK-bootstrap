@@ -1,0 +1,33 @@
+---
+- name: Install packages and setup environment
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Ensure desired packages are installed
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - zsh
+
+    # - name: Copy bash scripts
+    #   copy:
+    #     src: /path/to/your/local/scripts/
+    #     dest: /usr/local/bin/
+    #     mode: '0755'
+    #     owner: root
+    #     group: root
+
+    # - name: Copy zsh scripts
+    #   copy:
+    #     src: /path/to/your/local/zsh_scripts/
+    #     dest: /usr/local/bin/
+    #     mode: '0755'
+    #     owner: root
+    #     group: root
+
+    # - name: Execute a bash script
+    #   command: /usr/local/bin/your_script.sh
+
+    # - name: Execute a zsh script
+    #   command: /usr/local/bin/your_zsh_script.zsh
