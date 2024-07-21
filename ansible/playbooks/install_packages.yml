@@ -43,19 +43,36 @@
         repo: 'deb https://download.sublimetext.com/ apt/stable/'
         state: present
 
-    - name: Add Waterfox repository key
-      apt_key:
-        url: https://dl.waterfox.net/linux/waterfox.gpg
+    # - name: Add Waterfox repository key
+    #   apt_key:
+    #     url: https://dl.waterfox.net/linux/waterfox.gpg
+    #     state: present
+
+    # - name: Add Waterfox repository
+    #   apt_repository:
+    #     repo: 'deb https://dl.waterfox.net/linux/deb/ stable main'
+    #     state: present
+
+    - name: Add Regolith repository key for Focal
+      when: ansible_distribution_release == 'focal'
+      command: wget -qO - https://regolith-desktop.org/regolith.key | sudo apt-key add -
+      changed_when: false
+
+    - name: Add Regolith repository for Focal
+      when: ansible_distribution_release == 'focal'
+      apt_repository:
+        repo: 'deb [arch=amd64] https://regolith-desktop.org/release-3_1-ubuntu-focal-amd64 focal main'
         state: present
 
-    - name: Add Waterfox repository
-      apt_repository:
-        repo: 'deb https://dl.waterfox.net/linux/deb/ stable main'
-        state: present
+    - name: Add Regolith repository key for Mantic
+      when: ansible_distribution_release == 'mantic'
+      command: wget -qO - https://regolith-desktop.org/regolith.key | gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
+      changed_when: false
 
-    - name: Add Regolith Desktop repository
+    - name: Add Regolith repository for Mantic
+      when: ansible_distribution_release == 'mantic'
       apt_repository:
-        repo: 'ppa:regolith-linux/release'
+        repo: 'deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/release-3_1-ubuntu-mantic-amd64 mantic main'
         state: present
 
     - name: Update apt cache
@@ -83,9 +100,11 @@
         - peek
         - python3.12
         - regolith-desktop
+        - regolith-session-flashback
+        - regolith-look-lascaille
         - steam
         - sublime-text
-        - waterfox
+        # - waterfox
         - wget
         - wireshark
         - zsh
