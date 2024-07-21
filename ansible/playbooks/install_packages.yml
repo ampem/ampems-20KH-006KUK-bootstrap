@@ -23,15 +23,15 @@
         repo: 'deb [arch=amd64 signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main'
         state: present
 
-    - name: Add Insomnia repository key
-      apt_key:
-        url: https://insomnia.rest/keys/debian-public.key.asc
-        state: present
+    # - name: Add Insomnia repository key
+    #   apt_key:
+    #     url: https://insomnia.rest/keys/debian-public.key.asc
+    #     state: present
 
-    - name: Add Insomnia repository
-      apt_repository:
-        repo: 'deb https://dl.bintray.com/getinsomnia/Insomnia /'
-        state: present
+    # - name: Add Insomnia repository
+    #   apt_repository:
+    #     repo: 'deb https://dl.bintray.com/getinsomnia/Insomnia /'
+    #     state: present
 
     - name: Add Sublime Text repository key
       apt_key:
@@ -89,11 +89,11 @@
         - dbeaver-ce
         - dia
         - discord
-        - docker.io
+        # - docker
         - ffmpeg
         - gimp
         - google-chrome-stable
-        - insomnia
+        # - insomnia
         - mpv
         - obs-studio
         - openssh-client
