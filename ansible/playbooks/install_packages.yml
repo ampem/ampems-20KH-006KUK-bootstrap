@@ -53,6 +53,11 @@
     #     repo: 'deb https://dl.waterfox.net/linux/deb/ stable main'
     #     state: present
 
+    - name: Add Deadsnakes PPA for Python
+      apt_repository:
+        repo: 'ppa:deadsnakes/ppa'
+        state: present
+
     - name: Add Regolith repository key for Focal
       when: ansible_distribution_release == 'focal'
       command: wget -qO - https://regolith-desktop.org/regolith.key | sudo apt-key add -
