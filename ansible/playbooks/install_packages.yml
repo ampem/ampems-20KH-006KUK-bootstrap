@@ -103,7 +103,7 @@
         - obs-studio
         - openssh-client
         - peek
-        - python3.12
+        # - python3.12
         - regolith-desktop
         - regolith-session-flashback
         - regolith-look-lascaille
@@ -114,3 +114,9 @@
         - wireshark
         - zsh
         - openssh-server # Disable ssh server
+
+    # - name: Set Python 3.12 as the default
+    #   command: sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
+
+    # - name: Configure the default Python version
+    #   command: sudo update-alternatives --set python /usr/bin/python3.12
